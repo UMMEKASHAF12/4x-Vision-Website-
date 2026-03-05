@@ -1,12 +1,14 @@
-import Hero from "./components/Hero";
-import Stats from "./components/Stats";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home"; // ya "./components/Home"
+import './index.css'
 
 function App() {
   return (
-    <>
-      <Hero />
-     <Stats/>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 

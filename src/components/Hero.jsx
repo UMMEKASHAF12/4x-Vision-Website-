@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -58,6 +60,8 @@ html, body {
   position:relative; width:100vw; height:100vh;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; overflow:hidden;
+margin-bottom:120px;
+
 }
 
 /* The Signature Glass Arc */
@@ -162,16 +166,12 @@ function BgCanvas() {
       h = c.height = window.innerHeight;
     };
 
-    const draw = (t) => {
+    const draw = () => {
       ctx.clearRect(0, 0, w, h);
-      
-      // Background base
       ctx.fillStyle = "#05020d";
       ctx.fillRect(0, 0, w, h);
 
-      // Grid
       ctx.strokeStyle = "rgba(139,92,246,0.05)";
-      ctx.lineWidth = 1;
       const step = 80;
       for (let x = 0; x < w; x += step) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
@@ -180,7 +180,6 @@ function BgCanvas() {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
       }
 
-      // Animated Glow Blob
       const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w*0.6);
       grad.addColorStop(0, "rgba(88, 28, 235, 0.15)");
       grad.addColorStop(1, "transparent");
@@ -199,7 +198,9 @@ function BgCanvas() {
   return <canvas ref={cvs} id="bg-canvas" />;
 }
 
-export default function Quantix() {
+export default function Hero() {
+  const { heroData } = useContext(GlobalContext);
+
   const [active, setActive] = useState("Home");
   const dotRef = useRef(null), ringRef = useRef(null);
   const mouse = useRef({ x:-100, y:-100 });
@@ -241,16 +242,14 @@ export default function Quantix() {
 
         <div className="h-inner">
           <div className="badge">
-            <span style={{color: '#a78bfa'}}>✦</span> Optimize Your Weak Brand
+            <span style={{color: '#a78bfa'}}>✦</span> {heroData.badge}
           </div>
-          <h1 className="h-title">
-            Turn Your Weak Brand Into a<br />Digital Authority
-          </h1>
-          <p className="h-sub">
-We build websites, design, and LinkedIn presence that boost credibility and attract clients.          </p>
+          <h1 className="h-title">{heroData.heading}</h1>
+          <p className="h-sub">{heroData.subheading}</p>
+
           <div className="btns">
-            <button className="btn-p">Book Your Free Consultation →</button>
-            <button className="btn-s">View Our Work →</button>
+            <button className="btn-p">{heroData.primaryBtn}</button>
+            <button className="btn-s">{heroData.secondaryBtn}</button>
           </div>
         </div>
       </section>
