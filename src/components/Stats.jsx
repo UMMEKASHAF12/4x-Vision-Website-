@@ -9,7 +9,7 @@ const Stats = () => {
   ];
 
   return (
-<section className="w-full bg-black text-white pt-44 pb-32 px-6 font-inter flex justify-center">
+<section className="w-full bg-black text-white pt-44 pb-32 px-6 font-inter flex justify-center h-10vh">
       <div className="max-w-5xl w-full flex flex-col items-center text-center gap-24">
 
         {/* Heading Section */}
