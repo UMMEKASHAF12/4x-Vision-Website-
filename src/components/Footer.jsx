@@ -11,7 +11,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#05020d] border-t border-white/10 pt-24 pb-12 px-[59px] relative overflow-hidden">
+    <footer className="bg-[#05020d] border-t border-white/10 pt-15 pb-12 px-[59px] relative overflow-hidden">
       {/* --- ANIMATED BACKGROUND BLOOPS --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Main Violet Glow - Pulses */}
@@ -62,30 +62,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
+        <div className="flex flex-col md:flex-row justify-center items-center pt-8 border-t border-white/5 gap-4">
           <p className="text-white/20 text-[11px] uppercase tracking-widest">
             © {currentYear} 4x Vision Agency. All rights reserved.
           </p>
-          
-          <div className="flex gap-8">
-             <button 
-               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-               className="text-white/20 hover:text-white text-[11px] uppercase tracking-widest transition-colors flex items-center gap-2 group"
-             >
-               Back to top 
-               <span className="group-hover:-translate-y-1 transition-transform duration-300">↑</span>
-             </button>
-          </div>
         </div>
       </div>
-
-      {/* Tailwind Keyframe Injection - Add this to your tailwind.config.js or a global CSS file */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(50px, -30px); }
-        }
-      `}</style>
     </footer>
   );
 }
