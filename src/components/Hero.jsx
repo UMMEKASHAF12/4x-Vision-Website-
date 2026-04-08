@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { NavLink } from "react-router-dom";
+
 
 
 const CSS = `
@@ -180,11 +182,11 @@ function BgCanvas() {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
       }
 
-      const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w*0.6);
+      const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.6);
       grad.addColorStop(0, "rgba(88, 28, 235, 0.15)");
       grad.addColorStop(1, "transparent");
       ctx.fillStyle = grad;
-      ctx.fillRect(0,0,w,h);
+      ctx.fillRect(0, 0, w, h);
 
       raf.current = requestAnimationFrame(draw);
     };
@@ -203,8 +205,8 @@ export default function Hero() {
 
   const [active, setActive] = useState("Home");
   const dotRef = useRef(null), ringRef = useRef(null);
-  const mouse = useRef({ x:-100, y:-100 });
-  const ring = useRef({ x:-100, y:-100 });
+  const mouse = useRef({ x: -100, y: -100 });
+  const ring = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     const mv = e => { mouse.current.x = e.clientX; mouse.current.y = e.clientY; };
@@ -227,12 +229,33 @@ export default function Hero() {
       <div id="cb" ref={ringRef} />
 
       <nav className="nav">
-        <div className="logo"><div className="logo-box">✦</div>Quantix</div>
+        {/* Logo */}
+        <div className="logo">
+          <div className="logo-box">✦</div>
+          Quantix
+        </div>
+
+        {/* Nav Links */}
         <div className="nav-pill">
-          {["Home", "About", "Feature", "Pricing", "Integration", "Blog"].map(l => (
-            <div key={l} className={`nl${active === l ? " on" : ""}`} onClick={() => setActive(l)}>{l}</div>
+          {[
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+            { name: "Feature", path: "/feature" },
+            { name: "Pricing", path: "/pricing" },
+            { name: "Integration", path: "/integration" },
+            { name: "Blog", path: "/blog" },
+          ].map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) => `nl ${isActive ? "on" : ""}`}
+            >
+              {item.name}
+            </NavLink>
           ))}
         </div>
+
+        {/* Button */}
         <button className="nav-btn">Contact →</button>
       </nav>
 
@@ -242,7 +265,7 @@ export default function Hero() {
 
         <div className="h-inner">
           <div className="badge">
-            <span style={{color: '#a78bfa'}}>✦</span> {heroData.badge}
+            <span style={{ color: '#a78bfa' }}>✦</span> {heroData.badge}
           </div>
           <h1 className="h-title">{heroData.heading}</h1>
           <p className="h-sub">{heroData.subheading}</p>
