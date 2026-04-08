@@ -1,106 +1,4 @@
-import React, { useEffect, useRef, useContext } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-
-const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-html, body {
-  width:100%; min-height:100%;
-  font-family: 'Inter', sans-serif;
-  background:#05020d;
-  color:#fff;
-  overflow-x:hidden;
-  cursor: none;
-}
-
-/* Custom Cursor */
-#ca { position:fixed; width:6px; height:6px; border-radius:50%; background:#fff; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition: transform 0.1s ease; }
-#cb { position:fixed; width:34px; height:34px; border-radius:50%; border:1px solid rgba(167,139,250,0.5); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
-
-/* Hero Section */
-.hero {
-  position:relative; width:100vw; height:100vh;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; overflow:hidden;
-}
-
-/* Glass Arc */
-.glass-arc {
-  position: absolute;
-  top: 15%;
-  width: 140%;
-  height: 1000px;
-  border-radius: 100%;
-  border-top: 1px solid rgba(255,255,255,0.25);
-  background: radial-gradient(circle at center top, rgba(139,92,246,0.15) 0%, transparent 40%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-#bg-canvas { position:absolute; inset:0; z-index:1; }
-
-/* Content */
-.h-inner { 
-  position:relative; 
-  z-index:10; 
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 40px; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.badge {
-  display:inline-flex; align-items:center; gap:8px;
-  padding:6px 16px; border-radius:999px;
-  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-  font-size:13px; font-weight:500; color:rgba(255,255,255,0.8);
-  margin-bottom:32px; backdrop-filter:blur(10px);
-}
-
-.h-title {
-  font-size: clamp(32px, 5.5vw, 82px); 
-  font-weight: 400; 
-  line-height: 1.1; 
-  letter-spacing: -0.04em;
-  color: #fff; 
-  margin-bottom: 24px;
-  text-align: center;
-  width: 100%;
-  max-width: 1000px;
-  display: inline-block;
-  word-break: keep-all; 
-}
-
-.h-sub {
-  font-size: 18px; 
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.5);
-  max-width: 500px;
-  margin: 0 auto 40px;
-  line-height: 1.4; 
-  letter-spacing: -0.02em;
-  text-align: center;
-}
-
-.btns { display:flex; align-items:center; justify-content:center; gap:16px; }
-
-.btn-p {
-  background:#7c3aed; color:#fff; border:none; padding:16px 36px;
-  border-radius:999px; font-weight:600; font-size:16px; cursor:pointer;
-  display:flex; align-items:center; gap:10px; transition: 0.3s;
-}
-
-.btn-s {
-  background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);
-  padding:16px 36px; border-radius:999px; font-weight:600; font-size:16px; cursor:pointer;
-  transition: 0.3s; backdrop-filter: blur(10px);
-}
-.btn-s:hover { background: rgba(255,255,255,0.1); }
-`;
+import React, { useEffect, useRef } from "react";
 
 function BgCanvas() {
   const cvs = useRef(null);
@@ -130,11 +28,11 @@ function BgCanvas() {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
       }
 
-      const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w*0.6);
+      const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.6);
       grad.addColorStop(0, "rgba(88, 28, 235, 0.15)");
       grad.addColorStop(1, "transparent");
       ctx.fillStyle = grad;
-      ctx.fillRect(0,0,w,h);
+      ctx.fillRect(0, 0, w, h);
 
       raf.current = requestAnimationFrame(draw);
     };
@@ -142,18 +40,20 @@ function BgCanvas() {
     fit();
     window.addEventListener("resize", fit);
     raf.current = requestAnimationFrame(draw);
-    return () => { cancelAnimationFrame(raf.current); window.removeEventListener("resize", fit); };
+    return () => { 
+      cancelAnimationFrame(raf.current); 
+      window.removeEventListener("resize", fit); 
+    };
   }, []);
 
-  return <canvas ref={cvs} id="bg-canvas" />;
+  return <canvas ref={cvs} className="absolute inset-0 z-[1]" />;
 }
 
 export default function Hero() {
-  const { heroData } = useContext(GlobalContext);
-
-  const dotRef = useRef(null), ringRef = useRef(null);
-  const mouse = useRef({ x:-100, y:-100 });
-  const ring = useRef({ x:-100, y:-100 });
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const mouse = useRef({ x: -100, y: -100 });
+  const ring = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     const mv = e => { mouse.current.x = e.clientX; mouse.current.y = e.clientY; };
@@ -181,30 +81,52 @@ export default function Hero() {
   }, []);
 
   return (
-    <>
-      <style>{CSS}</style>
-      <div id="ca" ref={dotRef} />
-      <div id="cb" ref={ringRef} />
+    <div className="bg-[#05020d] min-h-screen font-['Inter',sans-serif] text-white overflow-hidden selection:bg-violet-500/30">
+      
+      {/* Custom Cursor Components */}
+      <div 
+        ref={dotRef} 
+        className="fixed w-1.5 h-1.5 rounded-full bg-white pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out" 
+      />
+      <div 
+        ref={ringRef} 
+        className="fixed w-[34px] h-[34px] rounded-full border border-violet-400/50 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-300" 
+      />
 
-      <section className="hero">
+      <section className="relative w-screen h-screen flex flex-col items-center justify-center text-center overflow-hidden px-4">
         <BgCanvas />
-        <div className="glass-arc" />
+        
+        {/* Glass Arc Effect */}
+        <div className="absolute top-[15%] w-[140%] h-[1000px] rounded-[100%] border-t border-white/25 bg-[radial-gradient(circle_at_center_top,_rgba(139,92,246,0.15)_0%,_transparent_40%)] z-[2] pointer-events-none" />
 
-        <div className="h-inner">
-          <div className="badge">
-            <span style={{color: '#a78bfa'}}>✦</span> {heroData.badge}
+        <div className="relative z-10 w-full max-w-[1200px] flex flex-col items-center">
+          
+          {/* Badge Text */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[13px] font-medium text-white/80 mb-8 backdrop-blur-lg">
+            <span className="text-[#a78bfa]">✦</span> Optimize Your Weak Brand
           </div>
 
-          <h1 className="h-title">{heroData.heading}</h1>
+          {/* Heading Text */}
+          <h1 className="text-[clamp(32px,5.5vw,82px)] font-normal leading-[1.1] tracking-[-0.04em] text-white mb-6 text-center w-full max-w-[1000px] inline-block break-keep">
+            Turn Your Weak Brand Into a Digital Authority
+          </h1>
 
-          <p className="h-sub">{heroData.subheading}</p>
+          {/* Subheading Text */}
+          <p className="text-lg font-normal text-white/50 max-w-[550px] mx-auto mb-10 leading-[1.4] tracking-[-0.02em]">
+            We build websites, design, and LinkedIn presence that boost credibility and attract clients.
+          </p>
 
-          <div className="btns">
-            <button className="btn-p">{heroData.primaryBtn}</button>
-            <button className="btn-s">{heroData.secondaryBtn}</button>
+          {/* Buttons Text */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-9 py-4 rounded-full font-semibold text-base flex items-center gap-2.5 transition-all duration-300 active:scale-95 shadow-lg shadow-violet-500/20">
+              Book Your Free Consultation →
+            </button>
+            <button className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-9 py-4 rounded-full font-semibold text-base transition-all duration-300 backdrop-blur-lg active:scale-95">
+              View Our Work →
+            </button>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
