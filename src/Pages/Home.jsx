@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar"
 import Hero from "../components/Hero";
 import Stats from "../components/Stats";
 
@@ -5,6 +6,7 @@ import Stats from "../components/Stats";
 function Home() {
   return (
     <>
+    <Navbar />
       <Hero />
       <Stats />
       

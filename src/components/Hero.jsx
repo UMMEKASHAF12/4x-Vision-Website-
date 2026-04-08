@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -20,51 +19,14 @@ html, body {
 #ca { position:fixed; width:6px; height:6px; border-radius:50%; background:#fff; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition: transform 0.1s ease; }
 #cb { position:fixed; width:34px; height:34px; border-radius:50%; border:1px solid rgba(167,139,250,0.5); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
 
-/* Navigation */
-.nav {
-  position:fixed; inset:0 0 auto 0; z-index:400;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:24px 60px;
-  animation: navIn 0.8s cubic-bezier(0.16,1,0.3,1) both;
-}
-@keyframes navIn { from{opacity:0;transform:translateY(-20px);} to{opacity:1;transform:translateY(0);} }
-
-.logo { display:flex; align-items:center; gap:10px; font-weight:700; font-size:20px; letter-spacing:-0.03em; }
-.logo-box {
-  width:32px; height:32px; border-radius:8px;
-  background:#7c3aed;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 0 20px rgba(124,58,237,0.5);
-}
-
-.nav-pill { 
-  display:flex; align-items:center; gap:4px; 
-  background:rgba(255,255,255,0.03); 
-  backdrop-filter: blur(12px);
-  border:1px solid rgba(255,255,255,0.08); 
-  border-radius:999px; padding:6px; 
-}
-.nl { padding:8px 20px; border-radius:999px; font-size:14px; font-weight:500; color:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.3s; }
-.nl:hover { color:#fff; }
-.nl.on { background:rgba(255,255,255,0.1); color:#fff; }
-
-.nav-btn { 
-  background:#7c3aed; color:#fff; border:none; padding:10px 24px; 
-  border-radius:999px; font-weight:600; font-size:14px; cursor:pointer;
-  transition: 0.3s;
-}
-.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(124,58,237,0.3); }
-
 /* Hero Section */
 .hero {
   position:relative; width:100vw; height:100vh;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; overflow:hidden;
-
-
 }
 
-/* The Signature Glass Arc */
+/* Glass Arc */
 .glass-arc {
   position: absolute;
   top: 15%;
@@ -79,8 +41,17 @@ html, body {
 
 #bg-canvas { position:absolute; inset:0; z-index:1; }
 
-/* Content Styling */
-.h-inner { position:relative; z-index:10; max-width: 900px; padding: 0 20px; }
+/* Content */
+.h-inner { 
+  position:relative; 
+  z-index:10; 
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .badge {
   display:inline-flex; align-items:center; gap:8px;
@@ -90,33 +61,17 @@ html, body {
   margin-bottom:32px; backdrop-filter:blur(10px);
 }
 
-.h-inner { 
-  position:relative; 
-  z-index:10; 
-  width: 100%; /* Ensure it takes full width to allow 2 lines */
-  max-width: 1200px; /* Increased from 900px */
-  padding: 0 40px; 
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Keeps everything centered */
-}
-
 .h-title {
-  /* Using clamp to ensure it scales, but allowing more room */
   font-size: clamp(32px, 5.5vw, 82px); 
   font-weight: 400; 
   line-height: 1.1; 
   letter-spacing: -0.04em;
   color: #fff; 
   margin-bottom: 24px;
-  
-  /* Force center and prevent awkward wrapping */
   text-align: center;
   width: 100%;
-  max-width: 1000px; /* Adjust this so the text has room to breathe */
+  max-width: 1000px;
   display: inline-block;
-  
-  /* This prevents the browser from breaking lines too early */
   word-break: keep-all; 
 }
 
@@ -124,15 +79,10 @@ html, body {
   font-size: 18px; 
   font-weight: 400;
   color: rgba(255, 255, 255, 0.5);
-  max-width: 500px; /* Gives it room to wrap nicely */
+  max-width: 500px;
   margin: 0 auto 40px;
-  
-  /* THIS FIXES THE CHIPAKNA (CLUMPING) */
   line-height: 1.4; 
   letter-spacing: -0.02em;
-  
-  
-  
   text-align: center;
 }
 
@@ -201,7 +151,6 @@ function BgCanvas() {
 export default function Hero() {
   const { heroData } = useContext(GlobalContext);
 
-  const [active, setActive] = useState("Home");
   const dotRef = useRef(null), ringRef = useRef(null);
   const mouse = useRef({ x:-100, y:-100 });
   const ring = useRef({ x:-100, y:-100 });
@@ -209,13 +158,24 @@ export default function Hero() {
   useEffect(() => {
     const mv = e => { mouse.current.x = e.clientX; mouse.current.y = e.clientY; };
     window.addEventListener("mousemove", mv);
+
     const tick = () => {
       ring.current.x += (mouse.current.x - ring.current.x) * 0.15;
       ring.current.y += (mouse.current.y - ring.current.y) * 0.15;
-      if (dotRef.current) { dotRef.current.style.left = `${mouse.current.x}px`; dotRef.current.style.top = `${mouse.current.y}px`; }
-      if (ringRef.current) { ringRef.current.style.left = `${ring.current.x}px`; ringRef.current.style.top = `${ring.current.y}px`; }
+
+      if (dotRef.current) {
+        dotRef.current.style.left = `${mouse.current.x}px`;
+        dotRef.current.style.top = `${mouse.current.y}px`;
+      }
+
+      if (ringRef.current) {
+        ringRef.current.style.left = `${ring.current.x}px`;
+        ringRef.current.style.top = `${ring.current.y}px`;
+      }
+
       requestAnimationFrame(tick);
     };
+
     tick();
     return () => window.removeEventListener("mousemove", mv);
   }, []);
@@ -226,16 +186,6 @@ export default function Hero() {
       <div id="ca" ref={dotRef} />
       <div id="cb" ref={ringRef} />
 
-      <nav className="nav">
-        <div className="logo"><div className="logo-box">✦</div>Quantix</div>
-        <div className="nav-pill">
-          {["Home", "About", "Feature", "Pricing", "Integration", "Blog"].map(l => (
-            <div key={l} className={`nl${active === l ? " on" : ""}`} onClick={() => setActive(l)}>{l}</div>
-          ))}
-        </div>
-        <button className="nav-btn">Contact →</button>
-      </nav>
-
       <section className="hero">
         <BgCanvas />
         <div className="glass-arc" />
@@ -244,7 +194,9 @@ export default function Hero() {
           <div className="badge">
             <span style={{color: '#a78bfa'}}>✦</span> {heroData.badge}
           </div>
+
           <h1 className="h-title">{heroData.heading}</h1>
+
           <p className="h-sub">{heroData.subheading}</p>
 
           <div className="btns">
