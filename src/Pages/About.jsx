@@ -1,7 +1,10 @@
 import React from "react";
+import Navbar from "../components/navbar";
 
 const About = () => {
   return (
+    <>
+        <Navbar />
     <section className="bg-white font-inter py-16 px-6 md:px-16">
       
       {/* Top Logos */}
@@ -61,6 +64,7 @@ const About = () => {
 
       </div>
     </section>
+    </>
   );
 };
 

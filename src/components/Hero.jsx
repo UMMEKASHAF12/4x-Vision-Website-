@@ -22,13 +22,26 @@ function BgCanvas() {
       ctx.strokeStyle = "rgba(139,92,246,0.05)";
       const step = 80;
       for (let x = 0; x < w; x += step) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
       }
       for (let y = 0; y < h; y += step) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
       }
 
-      const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.6);
+      const grad = ctx.createRadialGradient(
+        w / 2,
+        h / 2,
+        0,
+        w / 2,
+        h / 2,
+        w * 0.6
+      );
       grad.addColorStop(0, "rgba(88, 28, 235, 0.15)");
       grad.addColorStop(1, "transparent");
       ctx.fillStyle = grad;
@@ -40,9 +53,9 @@ function BgCanvas() {
     fit();
     window.addEventListener("resize", fit);
     raf.current = requestAnimationFrame(draw);
-    return () => { 
-      cancelAnimationFrame(raf.current); 
-      window.removeEventListener("resize", fit); 
+    return () => {
+      cancelAnimationFrame(raf.current);
+      window.removeEventListener("resize", fit);
     };
   }, []);
 
@@ -56,7 +69,10 @@ export default function Hero() {
   const ring = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
-    const mv = e => { mouse.current.x = e.clientX; mouse.current.y = e.clientY; };
+    const mv = (e) => {
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
+    };
     window.addEventListener("mousemove", mv);
 
     const tick = () => {
@@ -82,25 +98,9 @@ export default function Hero() {
 
   return (
     <div className="bg-[#05020d] min-h-screen font-['Inter',sans-serif] text-white overflow-hidden selection:bg-violet-500/30">
-      
-      {/* Custom Cursor Components */}
-      <div 
-        ref={dotRef} 
-        className="fixed w-1.5 h-1.5 rounded-full bg-white pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out" 
-      />
-      <div 
-        ref={ringRef} 
-        className="fixed w-[34px] h-[34px] rounded-full border border-violet-400/50 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-300" 
-      />
-
       <section className="relative w-screen h-screen flex flex-col items-center justify-center text-center overflow-hidden px-4">
         <BgCanvas />
-        
-        {/* Glass Arc Effect */}
-        <div className="absolute top-[15%] w-[140%] h-[1000px] rounded-[100%] border-t border-white/25 bg-[radial-gradient(circle_at_center_top,_rgba(139,92,246,0.15)_0%,_transparent_40%)] z-[2] pointer-events-none" />
-
         <div className="relative z-10 w-full max-w-[1200px] flex flex-col items-center">
-          
           {/* Badge Text */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[13px] font-medium text-white/80 mb-8 backdrop-blur-lg">
             <span className="text-[#a78bfa]">✦</span> Optimize Your Weak Brand
@@ -113,7 +113,8 @@ export default function Hero() {
 
           {/* Subheading Text */}
           <p className="text-lg font-normal text-white/50 max-w-[550px] mx-auto mb-10 leading-[1.4] tracking-[-0.02em]">
-            We build websites, design, and LinkedIn presence that boost credibility and attract clients.
+            We build websites, design, and LinkedIn presence that boost
+            credibility and attract clients.
           </p>
 
           {/* Buttons Text */}
