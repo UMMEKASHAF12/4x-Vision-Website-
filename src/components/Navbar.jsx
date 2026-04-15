@@ -13,11 +13,11 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation(); 
+  const { pathname } = useLocation();
   return (
     <>
-     {/* Glass Arc Effect */}
-        <div className="absolute top-[12%] w-[100%] h-[1000px] rounded-[100%] border-t border-white/25 bg-[radial-gradient(circle_at_center_top,_rgba(139,92,246,0.15)_0%,_transparent_40%)] z-[2] pointer-events-none" />
+      {/* Glass Arc Effect */}
+      <div className="absolute top-[12%] w-[100%] h-[1000px] rounded-[100%] border-t border-white/25 bg-[radial-gradient(circle_at_center_top,_rgba(139,92,246,0.15)_0%,_transparent_40%)] z-[2] pointer-events-none" />
 
       <nav className="z-50 flex items-center justify-between px-6 md:px-[59px] py-[15px] bg-[#05020d]/50 border-b border-white/10 backdrop-blur-lg fixed top-0 left-0 w-full">
         {/* Logo */}

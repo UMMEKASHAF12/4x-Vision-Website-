@@ -58,7 +58,13 @@ const PROJECTS = [
 // ─── Reusable Arrow SVG ───────────────────────────────────────────────────────
 function ArrowIcon({ size = 14, color = "white" }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" style={{ display: "block", flexShrink: 0 }}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      style={{ display: "block", flexShrink: 0 }}
+    >
       <path
         d="M3 13L13 3M13 3H6M13 3V10"
         stroke={color}
@@ -118,7 +124,10 @@ function ProjectCard({ project, index }) {
         {/* Project number — top left */}
         <span
           className="absolute left-6 top-5 font-mono text-xs font-bold tracking-widest"
-          style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{
+            color: "rgba(255,255,255,0.35)",
+            fontFamily: "'DM Sans', sans-serif",
+          }}
         >
           {project.num}
         </span>
@@ -292,9 +301,6 @@ export default function ScrollProjects() {
     offset: ["start start", "end end"],
   });
 
-  // Total horizontal distance the track travels (px).
-  // Each card is ~440px wide including gap; subtract one viewport to keep
-  // the first card visible at scroll=0.
   const CARD_STEP = 440;
   const TOTAL_TRAVEL = -(PROJECTS.length * CARD_STEP - CARD_STEP + 260); // +260 for end card
 
@@ -302,13 +308,16 @@ export default function ScrollProjects() {
 
   // Spring for smooth, weighted feel
   const x = useSpring(xRaw, {
-    stiffness: 75,   // lower = lazier scroll follow
-    damping: 20,     // lower = more bounce/overshoot
+    stiffness: 75, // lower = lazier scroll follow
+    damping: 20, // lower = more bounce/overshoot
     restDelta: 0.001,
   });
 
   // Progress bar — same spring
-  const progressScale = useSpring(scrollYProgress, { stiffness: 75, damping: 20 });
+  const progressScale = useSpring(scrollYProgress, {
+    stiffness: 75,
+    damping: 20,
+  });
 
   return (
     <>
@@ -399,13 +408,16 @@ export default function ScrollProjects() {
                   high-value clients.
                 </p>
                 <motion.a
-                  href="#"
-                  whileHover={{ scale: 1.05, borderColor: "rgba(123,63,228,0.6)" }}
+                  href="#Services"
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "rgba(123,63,228,0.6)",
+                  }}
                   whileTap={{ scale: 0.97 }}
                   className="flex items-center gap-2.5 rounded-full border px-6 py-3 text-sm font-medium text-white"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    borderColor: "rgba(255,255,255,0.18)",
+                    borderColor: "rgba(123,63,228,0.6)",
                     background: "rgba(255,255,255,0.04)",
                   }}
                 >
@@ -437,7 +449,7 @@ export default function ScrollProjects() {
           >
             {/* Rail */}
             <div
-              className="h-px max-w-[180px] flex-1 overflow-hidden rounded-full"
+              className="h-px max-w-[1400px] flex-1 overflow-hidden rounded-full"
               style={{ background: "rgba(255,255,255,0.08)" }}
             >
               <motion.div
@@ -448,16 +460,6 @@ export default function ScrollProjects() {
                 }}
               />
             </div>
-
-            <p
-              className="text-[11px] uppercase tracking-widest"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.22)",
-              }}
-            >
-              Scroll to explore
-            </p>
           </div>
 
           {/* ── MOBILE CTA ── */}
