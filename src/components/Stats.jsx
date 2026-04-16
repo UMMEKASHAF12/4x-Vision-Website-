@@ -46,7 +46,7 @@ const Stats = () => {
                 {item.num}
               </h2>
 
-              <p className="text-[16px] leading-snug max-w-[240px] text-purple-500">
+              <p className="text-[16px] leading-snug max-w-[240px] text-[#7c3aed]">
                 {item.text}
               </p>
 
