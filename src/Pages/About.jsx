@@ -142,6 +142,8 @@ const About = () => {
                 />
               </div>
 
+
+
               {/* content */}
               <div className="p-5 flex items-center justify-between">
                 <div>
