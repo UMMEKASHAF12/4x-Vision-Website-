@@ -273,28 +273,8 @@ function EndCard() {
 
 // ─── Main Export ──────────────────────────────────────────────────────────────
 export default function ScrollProjects() {
-  // Ref attached to the tall outer container — Framer tracks scroll within it
+  // Ref attached to the tall outer container to track scroll progress
   const containerRef = useRef(null);
-
-  // ── HOW THE SCROLL ANIMATION WORKS ──────────────────────────────────────────
-  //
-  // 1. The outer <section> is intentionally VERY TALL (N × 110vh).
-  //    This creates the scroll distance without the user actually going anywhere.
-  //
-  // 2. A `position: sticky` inner wrapper stays pinned to the top of the
-  //    viewport while the parent scrolls. The user sees a fixed panel.
-  //
-  // 3. useScroll({ target: containerRef, offset: ["start start","end end"] })
-  //    produces `scrollYProgress`: a MotionValue that goes 0 → 1 as the
-  //    user scrolls from the top of the section to the bottom.
-  //
-  // 4. useTransform maps that 0→1 to horizontal pixels:
-  //    scrollYProgress=0  → x=0       (cards start at natural position)
-  //    scrollYProgress=1  → x=-TRAVEL (cards have moved fully left)
-  //
-  // 5. useSpring wraps the raw value for a buttery, organic feel.
-  //    Higher stiffness = snappier. Higher damping = more lag/inertia.
-  // ─────────────────────────────────────────────────────────────────────────────
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
