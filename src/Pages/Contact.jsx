@@ -30,10 +30,10 @@ const NEXT_STEPS = [
 ];
 
 const SOCIALS = [
-  { icon: Linkedin, href: "#" },
+  { icon: Linkedin, href: "linkedin.com/company/4x-vision" },
   { icon: Instagram, href: "#" },
   { icon: X, href: "#" },
-  { icon: Facebook, href: "#" },
+  { icon: Facebook, href: "https://www.facebook.com/share/14agRdS8tFJ/" },
 ];
 
 function FloatInput({
