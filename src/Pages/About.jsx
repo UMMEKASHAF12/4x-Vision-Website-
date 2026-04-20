@@ -15,12 +15,42 @@ const team = [
 ];
 
 const testimonials = [
-  { name: "Naveed Malik", role: "Head of Partnership", img: "/testimonial1.jpg", text: "Excellent service, quality, and all-round support." },
-  { name: "Ahmed Raza", role: "Graphic Designer", img: "/testimonial2.jpg", text: "Highly professional and creative team." },
-  { name: "Fareeha Abbasi", role: "Marketing Manager", img: "/testimonial3.jpg", text: "Lightning fast and incredibly cool." },
-  { name: "Nadim", role: "CEO at Nexus Digital", img: "/testimonial4.jpg", text: "The attention to detail is unmatched." },
-  { name: "Layla Hassan", role: "Marketing Director", img: "/testimonial5.jpg", text: "Delivered exactly what we envisioned." },
-  { name: "James Ortega", role: "Co-Founder at Stackify", img: "/testimonial6.jpg", text: "Wildly talented. The website converted like crazy." },
+  {
+    name: "Naveed Malik",
+    role: "Head of Partnership",
+    img: "/testimonial1.jpg",
+    text: "Excellent service, quality, and all-round support.",
+  },
+  {
+    name: "Ahmed Raza",
+    role: "Graphic Designer",
+    img: "/testimonial2.jpg",
+    text: "Highly professional and creative team.",
+  },
+  {
+    name: "Fareeha Abbasi",
+    role: "Marketing Manager",
+    img: "/testimonial3.jpg",
+    text: "Lightning fast and incredibly cool.",
+  },
+  {
+    name: "Nadim",
+    role: "CEO at Nexus Digital",
+    img: "/testimonial4.jpg",
+    text: "The attention to detail is unmatched.",
+  },
+  {
+    name: "Layla Hassan",
+    role: "Marketing Director",
+    img: "/testimonial5.jpg",
+    text: "Delivered exactly what we envisioned.",
+  },
+  {
+    name: "James Ortega",
+    role: "Co-Founder at Stackify",
+    img: "/testimonial6.jpg",
+    text: "Wildly talented. The website converted like crazy.",
+  },
 ];
 
 const duplicated = [...testimonials, ...testimonials];
@@ -48,7 +78,6 @@ const About = () => {
     <>
       <Navbar />
       <div className="w-full min-h-screen bg-[#070711] text-white font-[Inter] overflow-hidden">
-        
         {/* ================= ABOUT SECTION ================= */}
         <section className="flex flex-col md:flex-row">
           {/* LEFT CONTENT */}
@@ -60,12 +89,18 @@ const About = () => {
             className="w-full md:w-1/2 flex items-center justify-center px-6 md:px-20 py-24"
           >
             <div className="max-w-xl">
-              <p className="text-xs tracking-[0.35em] text-purple-400 uppercase">About 4X Vision</p>
+              <p className="text-xs tracking-[0.35em] text-purple-400 uppercase">
+                About 4X Vision
+              </p>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight mt-4">
-                We don't just design <span className="text-purple-500">we build digital identity</span>
+                We don't just design{" "}
+                <span className="text-purple-500">
+                  we build digital identity
+                </span>
               </h1>
               <p className="mt-6 text-gray-400 text-sm md:text-base leading-relaxed">
-                Websites, brands, and systems that are engineered for performance, aesthetics, and conversion.
+                Websites, brands, and systems that are engineered for
+                performance, aesthetics, and conversion.
               </p>
               <div className="mt-8 w-24 h-[2px] bg-purple-500"></div>
             </div>
@@ -92,10 +127,14 @@ const About = () => {
         {/* ================= TEAM SECTION ================= */}
         <section className="w-full py-28 bg-[#070711] relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.18),transparent_60%)]"></div>
-          
+
           <div className="text-center mb-16 relative z-10">
-            <h2 className="text-4xl md:text-5xl font-semibold text-purple-400">Meet the Team</h2>
-            <p className="text-gray-500 mt-3 text-sm">The minds behind 4X Vision</p>
+            <h2 className="text-4xl md:text-5xl font-semibold text-purple-400">
+              Meet the Team
+            </h2>
+            <p className="text-gray-500 mt-3 text-sm">
+              The minds behind 4X Vision
+            </p>
           </div>
 
           <motion.div
@@ -121,7 +160,9 @@ const About = () => {
                 </div>
                 <div className="p-5 flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-white">{member.name}</h3>
+                    <h3 className="text-lg font-semibold text-white">
+                      {member.name}
+                    </h3>
                     <p className="text-gray-400 text-sm">{member.role}</p>
                   </div>
                   <div className="w-9 h-9 flex items-center justify-center rounded-full border border-purple-500 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition">
@@ -138,13 +179,20 @@ const About = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(168,85,247,0.12),transparent_65%)]"></div>
 
           <div className="text-center mb-16 relative z-10">
-            <p className="text-xs tracking-[0.35em] text-purple-400 uppercase mb-3">Client Feedback</p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-white">What Our Clients Say</h2>
+            <p className="text-xs tracking-[0.35em] text-purple-400 uppercase mb-3">
+              Client Feedback
+            </p>
+            <h2 className="text-4xl md:text-5xl font-semibold text-white">
+              What Our Clients Say
+            </h2>
           </div>
 
-          <div 
+          <div
             className="relative z-10 w-full overflow-hidden"
-            style={{ maskImage: "linear-gradient(to right, transparent, black 7%, black 93%, transparent)" }}
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent, black 7%, black 93%, transparent)",
+            }}
           >
             <style>{`
               @keyframes scroll-left {
@@ -174,7 +222,11 @@ const About = () => {
                   <p className="t-text">"{t.text}"</p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-purple-600 overflow-hidden">
-                        <img src={t.img} alt={t.name} className="w-full h-full object-cover" />
+                      <img
+                        src={t.img}
+                        alt={t.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <p className="t-name">{t.name}</p>
