@@ -50,9 +50,10 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <button className="hidden md:block bg-white text-[#05020d] font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">
+        <Link 
+        className="hidden md:block bg-white text-[#05020d] font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">
           Schedule 1:1 meeting
-        </button>
+        </Link>
 
         {/* Mobile Hamburger */}
         <button

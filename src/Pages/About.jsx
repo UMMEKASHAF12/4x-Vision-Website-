@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import team1 from "../assets/kashaf.jpeg";
 import team2 from "../assets/imama.png";
 import team3 from "../assets/abiha.jpeg";
-import aboutImg from "../assets/about.jpg"; // Renamed to avoid confusion with component name
+import aboutImg from "../assets/team.jpg";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -76,6 +76,7 @@ const cardVariants = {
 const About = () => {
   return (
     <>
+      {/* NAVBAR */}
       <Navbar />
       <div className="w-full min-h-screen bg-[#070711] text-white font-[Inter] overflow-hidden">
         {/* ================= ABOUT SECTION ================= */}
@@ -239,6 +240,8 @@ const About = () => {
           </div>
         </section>
       </div>
+
+      {/* FOOTER */}
       <Footer />
     </>
   );
