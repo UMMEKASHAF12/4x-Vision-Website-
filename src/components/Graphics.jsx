@@ -82,9 +82,6 @@ export default function Graphics() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-[#7c3aed] font-mono text-[10px] font-bold tracking-[0.5em] uppercase block mb-4">
-            Portfolio Showcase
-          </span>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white">
             Graphic designing <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7c3aed] to-[#8b5cf6] italic">
