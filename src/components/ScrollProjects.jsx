@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-// ─── Project Data ─────────────────────────────────────────────────────────────
+// ─── Project Data
 const PROJECTS = [
   {
     id: 1,
