@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import Graphics from "../components/Graphics";
 import Footer from "../components/Footer";
 
-function Testimonials() {
+function Projects() {
   return (
     <>
       <Navbar />
@@ -11,4 +11,4 @@ function Testimonials() {
     </>
   );
 }
-export default Testimonials;
+export default Projects;

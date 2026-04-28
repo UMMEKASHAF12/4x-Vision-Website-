@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import IceAndSpice from "../assets/projects/ice-and-spice.png";
-// import ProjectTwo from "../assets/projects/your-file-name.png";
-// import ProjectThree from "../assets/projects/your-file-name.png";
+import Graphic1 from "../assets/projects/graphic1.jpg";
+import Graphic2 from "../assets/projects/graphic2.jpg";
 
 const ProjectCard = ({ index, imageUrl }) => {
   const container = useRef(null);
@@ -58,11 +58,11 @@ export default function Graphics() {
   const projects = [
     {
       color: "#7c3aed",
-      url: IceAndSpice, 
+      url: Graphic1, 
     },
     {
       color: "#8b5cf6",
-      url: IceAndSpice,
+      url: Graphic2,
     },
     {
       color: "#7c3aed",
