@@ -1,57 +1,57 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import QuranSabaq from "../assets/WebProjects/Quran-Sabaq.png";
+import ZakiaRukia from "../assets/WebProjects/ZakiaRukia.png";
+import IceAndSpice from "../assets/WebProjects/ice-and-spice.png";
+import AsadHotChicken from "../assets/WebProjects/AsadHotChicken.png";
+import Antra from "../assets/WebProjects/antra.png";
 
 // ─── Project Data
 const PROJECTS = [
   {
     id: 1,
     num: "01",
-    title: "Luminary Studio",
+    title: "Quran Sabaq",
     category: "Brand & Web Design",
-    year: "2024",
-    tags: ["UI/UX", "Branding"],
+    tags: ["React", "Tailwind"],
     accent: "#7B3FE4",
-    img: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=700&q=80",
+    img: QuranSabaq,
   },
   {
     id: 2,
     num: "02",
-    title: "Orbit Analytics",
+    title: "Zakia Rukia Salon",
     category: "Product Design",
-    year: "2024",
-    tags: ["SaaS", "Dashboard"],
-    accent: "#9B6FFF",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80",
+    tags: ["React", "Tailwind"],
+    accent: "#7B3FE4",
+    img: ZakiaRukia,
   },
   {
     id: 3,
     num: "03",
-    title: "Verdant Co.",
-    category: "E-Commerce Redesign",
-    year: "2024",
-    tags: ["Shopify", "CRO"],
+    title: "Ice & Spice",
+    category: "E-Commerce Design",
+    tags: ["React", "Tailwind"],
     accent: "#7B3FE4",
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=80",
+    img: IceAndSpice,
   },
   {
     id: 4,
     num: "04",
-    title: "Forma Agency",
-    category: "Digital Experience",
-    year: "2023",
-    tags: ["Web App", "System"],
-    accent: "#9B6FFF",
-    img: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=700&q=80",
+    title: "Asad Hot Chicken",
+    category: "Resturant Branding",
+    tags: ["React", "Tailwind"],
+    accent: "#7B3FE4",
+    img: AsadHotChicken,
   },
   {
     id: 5,
     num: "05",
-    title: "Solène Interiors",
-    category: "Portfolio & 3D",
-    year: "2023",
-    tags: ["Next.js", "3D"],
+    title: "Antra",
+    category: "Real Estate Web Design",
+    tags: ["React", "Tailwind"],
     accent: "#7B3FE4",
-    img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=80",
+    img: Antra,
   },
 ];
 
@@ -98,8 +98,6 @@ function ProjectCard({ project, index }) {
         border: "1px solid rgba(255,255,255,0.08)",
         transition: "border-color 0.35s",
       }}
-      // Inline hover border via whileHover doesn't support non-animatable props,
-      // so we use a CSS class approach handled by Tailwind group-hover below
     >
       {/* ── Image Block ── */}
       <div className="relative overflow-hidden" style={{ height: 240 }}>
@@ -107,18 +105,7 @@ function ProjectCard({ project, index }) {
           src={project.img}
           alt={project.title}
           className="h-full w-full object-cover"
-          style={{ filter: "brightness(0.7) saturate(0.8)" }}
-          whileHover={{ scale: 1.07 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        />
-
-        {/* Bottom gradient */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent 35%, rgba(8,8,15,0.92) 100%)",
-          }}
         />
 
         {/* Project number — top left */}
@@ -131,23 +118,10 @@ function ProjectCard({ project, index }) {
         >
           {project.num}
         </span>
-
-        {/* Tag badge — top right */}
-        <span
-          className="absolute right-5 top-5 rounded-full border px-3 py-1 text-[10px] uppercase tracking-wider"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            background: "rgba(123,63,228,0.18)",
-            borderColor: "rgba(123,63,228,0.4)",
-            color: "#9B6FFF",
-          }}
-        >
-          {project.tags[0]}
-        </span>
       </div>
 
       {/* ── Card Body ── */}
-      <div className="flex flex-col gap-4 p-7">
+      <div className="flex flex-col gap-4 p-5">
         {/* Title + Category */}
         <div>
           <h3
@@ -184,18 +158,8 @@ function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        {/* Footer: year + arrow */}
-        <div className="flex items-center justify-between pt-1">
-          <span
-            className="text-[11px]"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "rgba(255,255,255,0.22)",
-            }}
-          >
-            {project.year}
-          </span>
-
+        {/* Footer arrow */}
+        <div className="flex items-center justify-end">
           <motion.div
             className="flex h-9 w-9 items-center justify-center rounded-full"
             style={{ background: project.accent }}
@@ -216,11 +180,11 @@ function ProjectCard({ project, index }) {
   );
 }
 
-// ─── "See All" End Card ───────────────────────────────────────────────────────
+// ─── "See All" End Card
 function EndCard() {
   return (
     <motion.a
-      href="#"
+      href="/Projects"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -307,11 +271,7 @@ export default function ScrollProjects() {
       `}</style>
 
       {/*
-        ── OUTER SECTION ──
-        Height = N × 110vh → this IS the scroll distance.
-        Increase multiplier to give more scroll time per card.
-        Tune: 5 cards × 110vh = 550vh total scroll height.
-      */}
+        ── OUTER SECTION ─ */}
       <section
         ref={containerRef}
         style={{
@@ -321,10 +281,7 @@ export default function ScrollProjects() {
         }}
       >
         {/*
-          ── STICKY VIEWPORT ──
-          Stays fixed at top:0 while parent scrolls.
-          overflow: hidden clips the card track.
-        */}
+          ── STICKY VIEWPORT ──  */}
         <div
           className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden"
           style={{ background: "#08080f" }}
@@ -387,8 +344,9 @@ export default function ScrollProjects() {
                   We craft digital experiences that build authority and attract
                   high-value clients.
                 </p>
+
                 <motion.a
-                  href="#Services"
+                  href="/Projects"
                   whileHover={{
                     scale: 1.05,
                     backgroundColor: "rgba(123,63,228,0.6)",
@@ -409,7 +367,6 @@ export default function ScrollProjects() {
           </motion.div>
 
           {/* ── CARD TRACK ── */}
-          {/* overflow-visible so cards aren't clipped by the sticky container */}
           <div className="relative overflow-visible">
             <motion.div
               style={{ x }}

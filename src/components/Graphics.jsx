@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import IceAndSpice from "../assets/projects/ice-and-spice.png";
-import Graphic1 from "../assets/projects/graphic1.jpg";
-import Graphic2 from "../assets/projects/graphic2.jpg";
+import IceAndSpice from "../assets/GraphicProjects/ice-and-spice.png";
+import Graphic1 from "../assets/GraphicProjects/graphic1.jpg";
+import Graphic2 from "../assets/GraphicProjects/graphic2.jpg";
 
 const ProjectCard = ({ index, imageUrl }) => {
   const container = useRef(null);
@@ -58,7 +58,7 @@ export default function Graphics() {
   const projects = [
     {
       color: "#7c3aed",
-      url: Graphic1, 
+      url: Graphic1,
     },
     {
       color: "#8b5cf6",
@@ -93,11 +93,7 @@ export default function Graphics() {
 
       <div className="relative">
         {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            index={index}
-            imageUrl={project.url}
-          />
+          <ProjectCard key={index} index={index} imageUrl={project.url} />
         ))}
       </div>
 
